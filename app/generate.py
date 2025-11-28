@@ -3,6 +3,7 @@ from openai import AsyncOpenAI
 from dotenv import load_dotenv
 import os
 import re
+import openai
 
 load_dotenv()
 client = AsyncOpenAI(
@@ -38,7 +39,7 @@ def format_for_markdown_v2(text: str) -> str:
     
 
 async def ai_generate(text: str):
-  completion = await client.chat.completions.create(
+    completion = await client.chat.completions.create(
     model="openai/gpt-4o-mini",
     messages=[
                 {
@@ -50,10 +51,10 @@ async def ai_generate(text: str):
                   "content": text
                 }
               ]
-  )
-  response = completion.choices[0].message.content
+    )
+    response = completion.choices[0].message.content
     
-  # Форматируем для MarkdownV2
-  formatted_response = format_for_markdown_v2(response)
+    # Форматируем для MarkdownV2
+    formatted_response = format_for_markdown_v2(response)
   
-  return formatted_response
+    return formatted_response
