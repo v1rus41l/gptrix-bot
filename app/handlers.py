@@ -32,7 +32,7 @@ async def generating(message: Message, state: FSMContext):
         print(response)
         await message.answer(response, parse_mode="MarkdownV2")
     except Exception as e:
-        await message.answer("К сожалению я не могу ответить на ваш вопрос :(")
+        await message.answer("К сожалению я не могу ответить на ваш вопрос")
     await state.clear()
 
 
