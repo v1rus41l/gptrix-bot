@@ -1,17 +1,12 @@
 import asyncio
-from aiogram import Bot, Dispatcher
+from aiogram import Dispatcher
 
-from aiogram.enums import ParseMode
-from aiogram.client.default import DefaultBotProperties
-
-from dotenv import load_dotenv
-import os
+from bot_create import bot
 
 from app.handlers import router
 
-async def main():
-    load_dotenv()
-    bot = Bot(os.getenv('TG_TOKEN'), default=DefaultBotProperties(parse_mode=ParseMode.MARKDOWN_V2))
+
+async def main():   
     dp = Dispatcher()
     dp.include_router(router)
     await dp.start_polling(bot)
